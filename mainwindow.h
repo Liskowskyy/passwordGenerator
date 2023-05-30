@@ -21,6 +21,7 @@ private slots:
     bool checkIfAnythingChecked();
     char generateChar();
     void generatePasswords(int, int);
+    void error(QString);
 
 private:
     Ui::MainWindow *ui;

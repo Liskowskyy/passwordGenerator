@@ -16,6 +16,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::error(QString message) {
+    QMessageBox messageBox;
+    messageBox.critical(0,"Błąd",message);
+    messageBox.setFixedSize(500,200);
+}
+
 void MainWindow::clearOutput() {
     if(ui->clearList->isChecked()) ui->outputList->clear();
 }
@@ -26,9 +32,7 @@ bool MainWindow::checkIfAnythingChecked() {
     bool c = ui->numbers->isChecked();
     bool d = ui->specialChars->isChecked();
     if(!(a | b | c | d)) {
-        QMessageBox messageBox;
-        messageBox.critical(0,"Błąd","Nie wybrano żadnych znaków do generowania!");
-        messageBox.setFixedSize(500,200);
+        error("Nie wybrano żadnych znaków do generowania!");
         return false;
     }
     return true;
