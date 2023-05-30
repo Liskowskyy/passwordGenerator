@@ -24,7 +24,7 @@ void MainWindow::error(QString message) {
 }
 
 void MainWindow::clearOutput() {
-    if(ui->clearList->isChecked()) ui->outputList->clear();
+    ui->outputList->clear();
 }
 
 bool MainWindow::checkIfAnythingChecked() {
@@ -94,7 +94,9 @@ void MainWindow::generatePasswords(int n, int length) {
 void MainWindow::on_genButton_clicked()
 {
     if(checkIfAnythingChecked()) {
-        clearOutput();
+        if(ui->clearList->isChecked()) {
+            clearOutput();
+        }
         int n = ui->noOfPassToGen->value();
         int length = ui->passLength->value();
         generatePasswords(n, length);
@@ -127,5 +129,11 @@ void MainWindow::on_saveToFile_clicked()
 
     QTextStream out(&file);
     out << passString;
+}
+
+
+void MainWindow::on_clearOutput_clicked()
+{
+    clearOutput();
 }
 
