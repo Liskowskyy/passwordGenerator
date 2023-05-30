@@ -23,6 +23,8 @@ private slots:
     void generatePasswords(int, int);
     void error(QString);
 
+    void on_saveToFile_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

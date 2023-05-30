@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <QMessageBox>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -98,5 +99,33 @@ void MainWindow::on_genButton_clicked()
         int length = ui->passLength->value();
         generatePasswords(n, length);
     }
+}
+
+
+void MainWindow::on_saveToFile_clicked()
+{
+    int passCount = ui->outputList->count();
+
+    if(passCount == 0) {
+        error("Lista haseł jest pusta!");
+        return;
+    }
+
+    QString passString = "";
+    for(int i = 0; i<passCount; i++) {
+        passString += ui->outputList->item(i)->text() + "\n";
+    }
+
+    QString filename = QFileDialog::getSaveFileName(this,tr("Zapisz hasła do pliku"), "",tr("Pliki tekstowe (*.txt);;All Files (*)"));
+    if (filename.isEmpty()) return;
+
+    QFile file(filename);
+    if (!file.open(QIODevice::WriteOnly)) {
+        error("Nie można otworzyć pliku");
+        return;
+    }
+
+    QTextStream out(&file);
+    out << passString;
 }
 
