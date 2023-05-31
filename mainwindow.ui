@@ -122,6 +122,9 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Znaki A-Z&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>Duże litery</string>
     </property>
@@ -148,6 +151,9 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Znaki a-z&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>Małe litery</string>
     </property>
@@ -160,6 +166,9 @@
       <width>121</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Znaki 0-9&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>Cyfry</string>
@@ -174,6 +183,9 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Znaki !&amp;quot;#$%&amp;amp;'()*+,-./&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>Znaki specjalne</string>
     </property>
@@ -187,6 +199,9 @@
       <height>151</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kliknij na hasło, by je zaznaczyć i naciśnij Ctrl+C, by je skopiować.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
    </widget>
    <widget class="QCheckBox" name="clearList">
     <property name="geometry">
@@ -196,6 +211,9 @@
       <width>121</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeżeli zaznaczone, to lista będzie czyszczona przy każdym generowaniu haseł.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>Czyść listę</string>
