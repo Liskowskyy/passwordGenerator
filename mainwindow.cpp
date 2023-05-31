@@ -4,6 +4,7 @@
 #include <time.h>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QInputDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,6 +24,26 @@ void MainWindow::error(QString message) {
     messageBox.critical(0,"Błąd",message);
     messageBox.setFixedSize(500,200);
 }
+
+QString encrypt(QString content, QString pin) {
+    for(int i = 0; i<content.size(); i++) {
+        int sum = pin[0].digitValue() + pin[1].digitValue() + pin[2].digitValue() + pin[3].digitValue();
+        char a = content[i].unicode() + sum;
+        content[i] = a;
+    }
+    return "^"+content;
+}
+
+QString decrypt(QString content, QString pin) {
+    content.remove(0,1);
+    for(int i = 0; i<content.size(); i++) {
+        int sum = pin[0].digitValue() + pin[1].digitValue() + pin[2].digitValue() + pin[3].digitValue();
+        char a = content[i].unicode() - sum;
+        content[i] = a;
+    }
+    return content;
+}
+
 
 //Czyszczenie listy haseł
 void MainWindow::clearOutput() {
@@ -144,6 +165,19 @@ void MainWindow::on_saveToFile_clicked()
         return;
     }
 
+    //Szyfrowanie pliku zgodnie z wolą użytkownika
+    if(ui->encrypt->isChecked()) {
+        QString pin;
+        do{
+        bool ok;
+        pin = QInputDialog::getText(this, tr("Podaj PIN"),
+                                             tr("Czterocyfrowy PIN:"), QLineEdit::Normal,
+                                             "0000", &ok);
+        if (ok && !pin.isEmpty())
+        passString = encrypt(passString, pin);
+        }while(pin.length() != 4);
+    }
+
     //Zapisanie ciągu znaków z hasłami do pliku
     QTextStream out(&file);
     out << passString;
@@ -174,12 +208,26 @@ void MainWindow::on_loadFromFile_clicked()
         clearOutput();
     }
 
-    //Wczytanie kolejnych linijek pliku jako kolejne elementy listy
+    //Wczytanie pliku do zmiennej
     QTextStream in(&file);
+    QString passString = in.readAll();
+
+    //Sprawdzenie czy plik jest szyfrowany, jeśli tak to odszyfrować
+    if(passString[0] == '^') {
+        bool ok;
+        QString pin = QInputDialog::getText(this, tr("Podaj PIN"),
+                                            tr("PIN:"), QLineEdit::Normal,
+                                            "0000", &ok);
+        if (ok && !pin.isEmpty())
+        passString = decrypt(passString, pin);
+    }
+
+    //Wczytywanie kolejnych linijek ciągu znaków jako elementy listy haseł
+    QTextStream in2(&passString);
     int i = 0;
-    while (!in.atEnd())
+    while (!in2.atEnd())
     {
-        QString line = in.readLine();
+        QString line = in2.readLine();
         QListWidgetItem *newItem = new QListWidgetItem;
         newItem->setText(line);
         ui->outputList->insertItem(i, newItem);

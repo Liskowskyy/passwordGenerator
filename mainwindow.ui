@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>436</height>
+    <height>457</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -259,6 +259,25 @@
     </property>
     <property name="text">
      <string>Wczytaj z pliku</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="encrypt">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>390</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeżeli zaznaczone, to lista będzie czyszczona przy każdym generowaniu oraz wczytywaniu haseł.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="text">
+     <string>Szyfruj plik</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
