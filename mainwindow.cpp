@@ -155,3 +155,36 @@ void MainWindow::on_clearOutput_clicked()
     clearOutput();
 }
 
+
+void MainWindow::on_loadFromFile_clicked()
+{
+    //Wyświetlenie okna dialogowego wczytywania, z którego pobierana jest ścieżka
+    QString filename = QFileDialog::getOpenFileName(this,tr("Wczytaj hasła z pliku"), "",tr("Pliki tekstowe (*.txt);;All Files (*)"));
+    if (filename.isEmpty()) return;
+
+    //Błąd jeżeli nie można otworzyć pliku
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) {
+        error("Nie można otworzyć pliku");
+        return;
+    }
+
+    //Czyszczenie listy znaków zgodnie z wyborem użytkownika
+    if(ui->clearList->isChecked()) {
+        clearOutput();
+    }
+
+    //Wczytanie kolejnych linijek pliku jako kolejne elementy listy
+    QTextStream in(&file);
+    int i = 0;
+    while (!in.atEnd())
+    {
+        QString line = in.readLine();
+        QListWidgetItem *newItem = new QListWidgetItem;
+        newItem->setText(line);
+        ui->outputList->insertItem(i, newItem);
+        i++;
+    }
+
+}
+

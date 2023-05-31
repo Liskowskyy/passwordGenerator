@@ -27,6 +27,8 @@ private slots:
 
     void on_clearOutput_clicked();
 
+    void on_loadFromFile_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
