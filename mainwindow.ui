@@ -199,6 +199,11 @@
       <height>151</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Courier New</family>
+     </font>
+    </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kliknij na hasło, by je zaznaczyć i naciśnij Ctrl+C, by je skopiować.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
@@ -271,13 +276,13 @@
      </rect>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Jeżeli zaznaczone, to lista będzie czyszczona przy każdym generowaniu oraz wczytywaniu haseł.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>Szyfruj plik</string>
     </property>
     <property name="checked">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

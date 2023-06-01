@@ -27,8 +27,8 @@ void MainWindow::error(QString message) {
 
 QString encrypt(QString content, QString pin) {
     for(int i = 0; i<content.size(); i++) {
-        int sum = pin[0].digitValue() + pin[1].digitValue() + pin[2].digitValue() + pin[3].digitValue();
-        char a = content[i].unicode() + sum;
+        int sum = 1 * pin[0].digitValue() + 2 * pin[1].digitValue() + 3 * pin[2].digitValue() + 4 *pin[3].digitValue();
+        char a = content[i].unicode() + sum+1;
         content[i] = a;
     }
     return "^"+content;
@@ -37,8 +37,8 @@ QString encrypt(QString content, QString pin) {
 QString decrypt(QString content, QString pin) {
     content.remove(0,1);
     for(int i = 0; i<content.size(); i++) {
-        int sum = pin[0].digitValue() + pin[1].digitValue() + pin[2].digitValue() + pin[3].digitValue();
-        char a = content[i].unicode() - sum;
+        int sum = 1 * pin[0].digitValue() + 2 * pin[1].digitValue() + 3 * pin[2].digitValue() + 4 *pin[3].digitValue();
+        char a = content[i].unicode() - sum-1;
         content[i] = a;
     }
     return content;
